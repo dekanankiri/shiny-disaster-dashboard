@@ -37,7 +37,6 @@ ui <- dashboardPage(
   dashboardHeader(title = span("Dashboard Bencana & Iklim Indonesia", style = "font-weight: bold; font-size: 20px; color: white")),
   dashboardSidebar(
     tags$head(tags$style(HTML('body, label, input, button, select { font-family: "Segoe UI", sans-serif; }'))),
-    selectInput("tahun", "Pilih Tahun:", choices = 2010:2023, selected = 2023),
     selectInput("provinsi", "Pilih Provinsi:", choices = NULL)
   ),
   dashboardBody(
@@ -67,7 +66,9 @@ ui <- dashboardPage(
                )
       ),
       tabPanel(title = tagList(icon("globe"), "Peta Interaktif"),
-               leafletOutput("petaBencana", height = 600)
+               leafletOutput("petaBencana", height = 600),
+               br(),
+               selectInput("tahun", "Pilih Tahun:", choices = 2010:2023, selected = 2023)
       ),
       tabPanel(title = tagList(icon("cloud-sun"), "Analisis Iklim"),
                plotlyOutput("grafikCurahHujan"),
