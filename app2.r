@@ -7,7 +7,7 @@ library(readxl)
 library(forecast)
 library(ggfortify)
 library(sf)
-
+#ngetes push pull github
 # Load data
 full_data <- read_excel("data/DataKomstat_Gabung.xlsx", sheet = "komstat")
 data_prov <- read_excel("data/DataKomstat_Provinsi.xlsx")
