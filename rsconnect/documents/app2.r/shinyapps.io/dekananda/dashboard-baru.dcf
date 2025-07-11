@@ -1,0 +1,13 @@
+name: dashboard-baru
+title: dashboard-baru
+username: dekananda
+account: dekananda
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15039004
+bundleId: 10573555
+url: https://dekananda.shinyapps.io/dashboard-baru/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|about.md|app.R|app2..r|data/DataKomstat_Gabung.xlsx|data/DataKomstat_Provinsi.xlsx|data_prep.R|global.R|README.md|server.R|ui.R|www/indonesia-prov.geojson

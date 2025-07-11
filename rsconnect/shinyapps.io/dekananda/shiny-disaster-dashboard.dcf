@@ -1,0 +1,10 @@
+name: shiny-disaster-dashboard
+title: shiny-disaster-dashboard
+username: dekananda
+account: dekananda
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15038571
+bundleId: 10573193
+url: https://dekananda.shinyapps.io/shiny-disaster-dashboard/
+version: 1

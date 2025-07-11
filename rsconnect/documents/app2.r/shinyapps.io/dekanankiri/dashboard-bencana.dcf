@@ -1,0 +1,13 @@
+name: dashboard-bencana
+title: dashboard-bencana
+username: dekanankiri
+account: dekanankiri
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15039056
+bundleId: 10573519
+url: https://dekanankiri.shinyapps.io/dashboard-bencana/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|about.md|app.R|app2..r|data/DataKomstat_Gabung.xlsx|data/DataKomstat_Provinsi.xlsx|data_prep.R|global.R|README.md|server.R|ui.R|www/indonesia-prov.geojson
