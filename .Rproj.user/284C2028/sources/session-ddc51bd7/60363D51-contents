@@ -12,7 +12,7 @@ library(ggfortify)
 library(sf)
 library(shinycssloaders) # Untuk indikator loading
 library(DT)              # Untuk tabel interaktif
-library(rsconnect)     
+library(markdown)        # <-- TAMBAHKAN BARIS INI UNTUK MEMPERBAIKI ERROR
 
 # --- 2. MEMUAT DAN MEMPERSIAPKAN DATA ---
 # Catatan: Pastikan file data berada di direktori yang benar
@@ -501,7 +501,6 @@ ui <- dashboardPage(
               fluidRow(
                 box(title = "Video Tutorial", width = 12, solidHeader = TRUE, status = "primary",
                     p("Tonton video di bawah ini untuk panduan visual singkat tentang cara menggunakan dasbor ini."),
-                    # --- PERBAIKAN URL VIDEO DI SINI ---
                     HTML('<iframe width="100%" height="500" src="https://www.youtube.com/embed/cP6KQ2_-OG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')
                 ),
                 box(title = "Panduan Tekstual", width = 12, solidHeader = TRUE, status = "info",

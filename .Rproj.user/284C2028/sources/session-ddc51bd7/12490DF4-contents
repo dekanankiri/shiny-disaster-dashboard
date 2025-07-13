@@ -12,18 +12,17 @@ library(ggfortify)
 library(sf)
 library(shinycssloaders) # Untuk indikator loading
 library(DT)              # Untuk tabel interaktif
-library(rsconnect)     
 
 # --- 2. MEMUAT DAN MEMPERSIAPKAN DATA ---
 # Catatan: Pastikan file data berada di direktori yang benar
-# Membaca data dari file Excel.
+# Membaca data dari file CSV yang diunggah.
 tryCatch({
   full_data <- read_excel("data/DataKomstat_Gabung.xlsx")
   data_prov <- read_excel("data/DataKomstat_Provinsi.xlsx")
-  message("Berhasil memuat file data Excel.")
+  message("Berhasil memuat file data CSV.")
 }, error = function(e) {
   # Membuat data dummy jika file tidak ada untuk memastikan aplikasi tetap berjalan
-  message("File data Excel tidak ditemukan. Menggunakan data dummy sebagai gantinya.")
+  message("File data CSV tidak ditemukan. Menggunakan data dummy sebagai gantinya.")
   message("Error: ", e$message)
   full_data <- tibble(
     Year = rep(2010:2023, each = 12 * 5),
@@ -76,8 +75,8 @@ if(nrow(prov_geo) > 0 && "Propinsi" %in% names(prov_geo)) {
 ui <- dashboardPage(
   # Header
   dashboardHeader(
-    title = HTML('<img src="logo.png" height="35" style="margin-right: 10px; vertical-align: middle;"> Dashboard Bencana & Iklim'),
-    titleWidth = 350
+    title = HTML('<img src="logo.png" height="35" style="margin-right: 0 px; vertical-align: middle;"> Dashboard Bencana & Iklim'),
+    titleWidth = 300
   ),
   
   # Sidebar
@@ -109,8 +108,8 @@ ui <- dashboardPage(
     tags$head(
       tags$meta(name = "viewport", content = "width=device-width, initial-scale=1.0"),
       tags$style(HTML('
-        /* --- CSS UNTUK LANDING PAGE --- */
-        .main-header .logo {
+       /* --- CSS UNTUK LANDING PAGE --- */
+       .main-header .logo {
           padding: 0 15px !important;
           height: 50px !important;
         }
@@ -130,44 +129,44 @@ ui <- dashboardPage(
             font-size: 16px !important;
           }
         }
-        .landing-page-content {
-            padding-top: 20px;
-            padding-bottom: 40px;
-        }
-        .landing-page-content h1 {
-            font-family: "Oswald", sans-serif;
-            font-size: 42px;
-            font-weight: 700;
-            color: #4a312f;
-        }
-        .landing-page-content .lead {
-            font-size: 18px;
-            color: #614a48;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .landing-page-content .btn-start {
-             background: linear-gradient(90deg, #FF8C00, #FF4500);
-             color: white;
-             border: none;
-             font-weight: bold;
-             padding: 15px 30px;
-             font-size: 20px;
-             transition: transform 0.3s ease, box-shadow 0.3s ease;
-             border-radius: 5px;
-        }
-        .landing-page-content .btn-start:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .feature-box {
-            padding-bottom: 20px;
-        }
-        .feature-box .fa-3x {
-            color: #FF4500;
-        }
-        
+       .landing-page-content {
+           padding-top: 20px;
+           padding-bottom: 40px;
+       }
+       .landing-page-content h1 {
+           font-family: "Oswald", sans-serif;
+           font-size: 42px;
+           font-weight: 700;
+           color: #4a312f;
+       }
+       .landing-page-content .lead {
+           font-size: 18px;
+           color: #614a48;
+           max-width: 800px;
+           margin-left: auto;
+           margin-right: auto;
+       }
+       .landing-page-content .btn-start {
+            background: linear-gradient(90deg, #FF8C00, #FF4500);
+            color: white;
+            border: none;
+            font-weight: bold;
+            padding: 15px 30px;
+            font-size: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 5px;
+       }
+       .landing-page-content .btn-start:hover {
+           transform: translateY(-3px);
+           box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+       }
+       .feature-box {
+           padding-bottom: 20px;
+       }
+       .feature-box .fa-3x {
+           color: #FF4500;
+       }
+       
       /* --- FONT BARU --- */
       @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap");
 
@@ -501,8 +500,7 @@ ui <- dashboardPage(
               fluidRow(
                 box(title = "Video Tutorial", width = 12, solidHeader = TRUE, status = "primary",
                     p("Tonton video di bawah ini untuk panduan visual singkat tentang cara menggunakan dasbor ini."),
-                    # --- PERBAIKAN URL VIDEO DI SINI ---
-                    HTML('<iframe width="100%" height="500" src="https://www.youtube.com/embed/cP6KQ2_-OG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')
+                    HTML('<iframe width="100%" height="500" src="https://www.youtube.com/embed/GyrfU_E-m58?si=example" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')
                 ),
                 box(title = "Panduan Tekstual", width = 12, solidHeader = TRUE, status = "info",
                     tags$ul(
@@ -518,23 +516,23 @@ ui <- dashboardPage(
               )
       ),
       
-      # Tab 8: Metadata
+      # Tab 8: Metadata (DIPERBARUI)
       tabItem(tabName = "metadata",
               h2("Metadata"),
               fluidRow(
                 box(title = "Informasi Data", width = 12, solidHeader = TRUE, status = "primary",
+                    # --- TEKS BARU DITAMBAHKAN DI SINI ---
                     p("Berdasarkan Peraturan Presiden Indonesia Nomor 39 tahun 2019 tentang Satu Data Indonesia, data harus dilengkapi dengan metadata (pasal 3a) yang sesuai dengan format yang ditetapkan oleh Badan Pusat Statistik sebagai pembina data statistik (pasal 8); sebagaimana tercantum dalam Peraturan BPS No 5 tahun 2020 tentang Petunjuk Teknis Metadata Statistik, Tabel 2, page 8--12. Tabel di bawah ini berisikan metadata dari variabel dampak yang termuat dalam dataset DIBI."),
-                    hr(),
+                    hr(), # Garis pemisah
                     
                     h4("Sumber Data"),
                     tags$ul(
-                      tags$li("Data Jumlah Kejadian Bencana & Iklim: ", tags$a(href="https://dibi.bnpb.go.id/superset/dashboard/1/?standalone=0&expand_filters=0", target="_blank", "BNPB DIBI Dashboard")),
-                      tags$li("Data Suhu Permukaan (Temperature): ", tags$a(href="https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR", target="_blank", "ERA5 Land Monthly - Google Earth Engine")),
-                      tags$li("Data Intensitas Curah Hujan (Precipitation): ", tags$a(href="https://developers.google.com/earth-engine/datasets/catalog/UCSB-CHG_CHIRPS_DAILY", target="_blank", "CHIRPS Daily - Google Earth Engine")),
+                      tags$li("Data Jumlah Kejadian Bencana & Iklim : Badan Nasional Penaggulangan Bencana (BNPB)"),
+                      tags$li("Data Agregat Provinsi : Badan Nasional Penaggulangan Bencana (BNPB)"),
+                      tags$li("Data Suhu Permukaan dan Intensitas Curah Hujan : Google Earth Engine"),
                       tags$li("Data Spasial (Peta): `indonesia-prov.geojson`")
                     ),
                     hr(),
-                    
                     h4("Definisi Variabel Utama"),
                     tags$dl(
                       tags$dt("Bencana_jumlah"),
@@ -549,11 +547,9 @@ ui <- dashboardPage(
                       tags$dd("Rata-rata suhu udara dalam satu periode (°C).")
                     ),
                     hr(),
-                    
                     h4("Cakupan Data"),
                     p("Data yang digunakan mencakup periode dari tahun 2010 hingga 2023."),
                     hr(),
-                    
                     h4("Catatan"),
                     p("Jika file data asli tidak ditemukan, aplikasi akan berjalan menggunakan data dummy (simulasi) untuk keperluan demonstrasi. Oleh karena itu, interpretasi tidak boleh dianggap sebagai representasi kejadian nyata jika menggunakan data dummy.")
                 )
@@ -700,12 +696,11 @@ server <- function(input, output, session) {
   
   output$stat_output <- renderUI({
     req(input$xvar, input$yvar)
+    req(nrow(data_filtered()) > 2)
     
     analysis_data <- data_filtered() %>%
       select(all_of(c(input$xvar, input$yvar))) %>%
       na.omit()
-    
-    req(nrow(analysis_data) > 2)
     
     tags_list <- list()
     
@@ -832,6 +827,7 @@ server <- function(input, output, session) {
         h4("Tentang Dasbor"),
         p("Dasbor ini dibuat untuk memvisualisasikan dan menganalisis data kebencanaan dan iklim di seluruh Indonesia."),
         hr(),
+        p("Sumber Data: Data Komstat (dummy/provided)."),
         p("Dibuat dengan R dan Shiny.")
       )
     }

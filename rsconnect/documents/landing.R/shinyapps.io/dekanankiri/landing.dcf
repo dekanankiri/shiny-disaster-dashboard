@@ -1,0 +1,10 @@
+name: landing
+title:
+username: dekanankiri
+account: dekanankiri
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15068401
+bundleId: 10607584
+url: https://dekanankiri.shinyapps.io/landing/
+version: 1
