@@ -1,3 +1,0 @@
-install.packages("Rcmdr")
-library(Rcmdr)
-install.packages("nloptr")

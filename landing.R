@@ -12,7 +12,7 @@ library(ggfortify)
 library(sf)
 library(shinycssloaders) # Untuk indikator loading
 library(DT)              # Untuk tabel interaktif
-library(rsconnect)     
+library(markdown)        # Diperlukan untuk renderMarkdown
 
 # --- 2. MEMUAT DAN MEMPERSIAPKAN DATA ---
 # Catatan: Pastikan file data berada di direktori yang benar
@@ -501,7 +501,6 @@ ui <- dashboardPage(
               fluidRow(
                 box(title = "Video Tutorial", width = 12, solidHeader = TRUE, status = "primary",
                     p("Tonton video di bawah ini untuk panduan visual singkat tentang cara menggunakan dasbor ini."),
-                    # --- PERBAIKAN URL VIDEO DI SINI ---
                     HTML('<iframe width="100%" height="500" src="https://www.youtube.com/embed/cP6KQ2_-OG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')
                 ),
                 box(title = "Panduan Tekstual", width = 12, solidHeader = TRUE, status = "info",
@@ -560,10 +559,27 @@ ui <- dashboardPage(
               )
       ),
       
-      # Tab 9: Tentang
+      # Tab 9: Tentang (KONTEN STATIS DARI MD)
       tabItem(tabName = "tentang",
-              box(title = "Tentang Dasbor Ini", width = 12, solidHeader = TRUE, status = "primary",
-                  uiOutput("about_content")
+              h2("Tentang Dashboard"),
+              box(title = "Informasi Proyek", width = 12, solidHeader = TRUE, status = "primary",
+                  p("Dashboard ini bertujuan menyediakan media analisis dan visualisasi data interaktif untuk mendukung eksplorasi dan pemahaman terhadap hubungan antara perubahan iklim dan bencana hidrometeorologi. Bencana hidrometeorologi mencakup peristiwa seperti banjir, tanah longsor, angin kencang, gelombang pasang, hingga kekeringan. Dashboard ini mengumpulkan dan mengintegrasikan data suhu permukaan dan curah hujan dari Google Earth Engine dengan data bencana hidrometeorologi dari BNPB. Dengan adanya dashboard ini diharapkan dapat bermanfaat sebagai alat bantu dalam menjawab tantangan perubahan iklim di Indonesia."),
+                  hr(),
+                  h4("Sumber Data"),
+                  tags$ul(
+                    tags$li("Badan Nasional Penanggulangan Bencana (BNPB)"),
+                    tags$li("Google Earth Engine")
+                  ),
+                  hr(),
+                  h4("Fitur Dashboard"),
+                  tags$ul(
+                    tags$li("Peta interaktif"),
+                    tags$li("Analisis Iklim"),
+                    tags$li("Forecasting"),
+                    tags$li("Grafik tren"),
+                    tags$li("Korelasi bencana dan iklim"),
+                    tags$li("Data Explorer")
+                  )
               )
       )
     )
@@ -823,19 +839,8 @@ server <- function(input, output, session) {
                   rownames = FALSE, filter = 'top', class = 'cell-border stripe')
   })
   
-  # --- TAB 9: TENTANG ---
-  output$about_content <- renderUI({
-    if (file.exists("about.md")) {
-      includeMarkdown("about.md")
-    } else {
-      div(
-        h4("Tentang Dasbor"),
-        p("Dasbor ini dibuat untuk memvisualisasikan dan menganalisis data kebencanaan dan iklim di seluruh Indonesia."),
-        hr(),
-        p("Dibuat dengan R dan Shiny.")
-      )
-    }
-  })
+  
+  
 }
 
 # --- 5. MENJALANKAN APLIKASI ---

@@ -5,6 +5,6 @@ account: dekanankiri
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 15068401
-bundleId: 10607584
+bundleId: 10608106
 url: https://dekanankiri.shinyapps.io/landing/
 version: 1
